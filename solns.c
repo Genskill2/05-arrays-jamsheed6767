@@ -1,84 +1,66 @@
 /* Enter your solutions in this file */
 #include <stdio.h>
-float average(int z[], int n)
+#include <stdio.h>
+int max(int array[],int n)
 {
- int sum =0;
-  for (int i=0;i<n;i++)
-  {
-    sum +=z[i];
-  }
- float avg;
-  avg = (float)sum/n;
-  return avg;
+	int max=array[0];
+	for(int i=0;i<n;i++)
+	{	if(array[i]>max)
+		max=array[i];
+	}
+	return max;
 }
-int factors(int n, int r[])
+int min(int array[],int n)
 {
-  int p[] ={2,3,5,7,9,11,13,17,19};
-  int sum =0 , j=0;
- for(int i=0;i<9;i++)
- {
-     while(n%p[i] ==0)
-  { r[j]=p[i];
-  n=n/p[i];
-   sum +=1;
-   j++;
-      
-  }
-     
- }
-  return sum;
+	int min=array[0];
+	for(int i=0;i<n;i++)
+	{	
+		if(array[i]<min)
+		min=array[i];
+	}
+	return min;
 }
-int max(int z[], int n)
+float average(int array[], int n)
 {
-  for(int i=0;i<=n;i++)
-  {
-    int sum=0;
-    for(int j=0;j<=n;j++)
-     {
-       if(z[i]>=z[j])
-       {
-         sum +=1;
-       }
-      if(sum == n)
-        return z[i];
-    }
-  }
+	int sum=0;		
+	for(int i=0;i<n;i++)
+	{	
+		sum+=array[i];
+	}
+	sum=sum/n;		
+	return sum;
+}	
+int mode(int array[], int n)
+{
+	int maxcount=0,maxvalue=0;
+	for(int i=0;i<n;i++)
+	{
+		int count=0;
+		for(int j=0;j<n;j++)
+		{
+			if(array[i]==array[j])
+				++count;
+		}
+		if(count>maxcount)
+		{
+			maxcount=count;
+			maxvalue=array[i];
+		}
+	return maxvalue;	
+	}
 }
- int min(int z[], int n)
+int factors(int n, int array[])
 {
-  for(int i=0;i<=n;i++)
-  {
-    int sum=0;
-    for(int j=0;j<n;j++)
-     {
-       if(z[i]<=z[j])
-       {
-         sum +=1;
-       }
-      if(sum == n)
-        return z[i];
-    }
-  }
-}
-int mode(int z[], int n)
-{
-  int count[n], sum =0;
-  for(int i=0;i<n;i++)
-  {
-    for(int j=0;j<n;j++)
-    {
-      if(z[i]==z[j])
-        count[i] +=1;
-    }
-  }
-   for(int i=0;i<n;i++)
-  {
-    for(int j=0;j<n;j++)
-    {
-      if(count[i]>=count[j])
-        sum +=1;
-      if(sum==n){
-        return z[i];}
-    }
-   }
+	int j=0;
+	for(int i=2;i<=n;i++)
+	{
+		if(n%i==0)
+		{
+			array[j]=i;
+			n=n/i;
+			j++;
+			i=1;
+		}
+	}
+	return j;
 }
